@@ -2,6 +2,9 @@
     box-sizing: border-box;
 }
 
+body{
+    background-color: rgb(245, 227, 214);
+}
 
 .nav_links a{
     text-decoration: none;
@@ -29,7 +32,6 @@
     max-width: 100%;
     padding-top: 1%;
     padding-bottom: 1%;
-    background-color: #5F9EA0 ;
 }
 
 .container a{
@@ -43,4 +45,18 @@
     color: rgb(255, 255, 255);
     padding: 10px;
     border-radius: 5px;
+}
+
+.form-section{
+    background-color: #5F9EA0;
+    max-width: 80%;
+    margin: 3% 10%;
+    padding: 25px;
+    font-weight: 600;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    border-radius: 10px;
+}
+
+.form-section h2{
+    text-align: center;
 }
