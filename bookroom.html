@@ -19,6 +19,28 @@
             <a href="listallcustomers.html">List all Customers</a>
         </div>
     </nav>
+    <div class="form-section">
+        <h2>Book a Room</h2>
+        <form method="" action="#">
+          <div class="form-group">
+            <label for="roomnumber">Room Number:</label>
+            <input type="text" class="form-control" id="roomnumber" placeholder="Enter room number" name="roomnumber" required>
+          </div>
+          <div class="form-group">
+            <label for="customerID">customer ID:</label>
+            <input type="number" class="form-control" id="customerID" placeholder="Enter customer's ID" name="customerID" required>
+          </div>
+          <div class="form-group">
+            <label for="check-in">Check-in:</label>
+            <input type="date" class="form-control" id="check-in" placeholder="Enter customer's ID" name="check-in" required>
+          </div>
+          <div class="form-group">
+            <label for="check-out">Check-Out:</label>
+            <input type="date" class="form-control" id="check-out" placeholder="Enter customer's ID" name="check-out" required>
+          </div>
+          <button type="submit" class="btn btn-danger btn-md btn-block">Book</button>
+        </form>
+      </div>
     
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

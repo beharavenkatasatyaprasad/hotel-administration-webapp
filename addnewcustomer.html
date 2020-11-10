@@ -21,7 +21,7 @@
   </nav>
   <div class="form-section">
     <h2>Add New Customer</h2>
-    <form method="POST" action="#">
+    <form method="" action="#">
       <div class="form-group">
         <label for="name">Name:</label>
         <input type="text" class="form-control" id="name" placeholder="Enter customer's name" name="name" required>
@@ -31,10 +31,18 @@
         <input type="email" class="form-control" id="email" placeholder="Enter customer's email" name="email" required>
       </div>
       <div class="form-group">
+        <label for="gender">Gender:</label>
+        <select class="form-control" id="gender" required>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Trans</option>
+        </select>
+    </div>
+      <div class="form-group">
         <label for="address">Address:</label>
         <textarea class="form-control" id="address" rows="3" placeholder="Enter customer's address" required></textarea>
       </div>
-      <button type="submit" class="btn btn-danger btn-md btn-block">Submit</button>
+      <button type="submit" class="btn btn-danger btn-md btn-block">Add Customer</button>
     </form>
   </div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
