@@ -1,0 +1,47 @@
+*{
+    box-sizing: border-box;
+}
+
+
+.nav_links a{
+    text-decoration: none;
+    color: black;
+    font-size: medium;
+    padding: 10px;
+    font-weight: 600;
+}
+
+.nav_links a:hover{
+    background-color: rgb(10, 10, 10);
+    color: rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 5px;
+    
+}
+
+.carousel-item img{
+    width: 100%;
+    height: 618px;
+    transition-delay: 5ms;
+}
+
+.container{
+    margin:0;
+    max-width: 100%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    background-color: #5F9EA0 ;
+}
+
+.container a{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-weight: 600;
+}
+
+.container a:hover{
+    background-color: rgb(10, 10, 10);
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    border-radius: 5px;
+}
