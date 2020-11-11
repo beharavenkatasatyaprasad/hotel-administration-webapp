@@ -1,13 +1,32 @@
 {
-  "name": "hm",
+  "name": "hotel-administrationwebapp",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.html",
-  "dependencies": {},
-  "devDependencies": {},
+  "description": "a webapp used to manage rooms and customers services of a hotel.",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
-  "author": "satya",
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beharavenkatasatyaprasad/hotel-administration-webapp.git"
+  },
+  "keywords": [
+    "webapp",
+    "node",
+    "javascript",
+    "ejs"
+  ],
+  "author": "satyaprasadbehara",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/beharavenkatasatyaprasad/hotel-administration-webapp/issues"
+  },
+  "homepage": "https://github.com/beharavenkatasatyaprasad/hotel-administration-webapp#readme",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "http": "0.0.1-security",
+    "nodemon": "^2.0.6"
+  }
 }
