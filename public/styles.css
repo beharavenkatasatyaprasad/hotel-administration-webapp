@@ -60,3 +60,7 @@ body{
 .form-section h2{
     text-align: center;
 }
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
