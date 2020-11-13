@@ -49,8 +49,8 @@ app.post('/createroom',urlencodedParser,[
     .notEmpty(),
     check('fare' ,"Fare is required")
     .notEmpty(),
-    // check('maintenancereport.value' ,"maintenancereport is required")
-    // .notEmpty()
+    check('maintenancereport' ,"maintenancereport is required")
+    .notEmpty()
     ],(req, res) => {
     // Finds the validation errors in this request and wraps them in an object with handy functions
     const errors = validationResult(req);
@@ -88,17 +88,9 @@ app.get('/bookroom',(req,res) => {
 
 app.post('/bookroom',urlencodedParser,[
 
-    // check('roomnum' ,"please select room number")
-    // .notEmpty(),
+    check('roomnum' ,"please select room number")
+    .notEmpty(),
     check('custname' ,"Please enter customer name")
-    .notEmpty(),
-    check('checkin_date' ,"Please select check-in date")
-    .notEmpty(),
-    check('checkin_time' ,"Please select check-in time")
-    .notEmpty(),
-    check('checkout_date' ,"Please select check-out date")
-    .notEmpty(),
-    check('checkout_time' ,"Please select check-out time")
     .notEmpty()
 ],(req, res) => {
     // Finds the validation errors in this request and wraps them in an object with handy functions
@@ -125,6 +117,7 @@ app.post('/bookroom',urlencodedParser,[
             }
         };
         customer_bookings.push(newBooking);
+        // console.log(customer_bookings)
         res.render('bookroom',{
             newBooking          
         })

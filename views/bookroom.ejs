@@ -8,38 +8,97 @@
     <title>Hotel Tonight Admin page</title>
 </head>
 <body>
-    <nav  class="navbar navbar-dark bg-dark" style="background-color: #5F9EA0 !important;">
-        <a href="#"><img src="imgs/logo.png" alt="" height="40"></a>
-        <div class="nav_links">
-            <a href="/">Home</a>
-            <a href="createroom">Create Room</a>
-            <a href="bookroom" class="active">Book Room</a>
-            <a href="listallbookings">List all Booking</a>
-            <a href="listallcustomers">List all Customers</a>
-        </div>
-    </nav>
-    <div class="form-section">
-        <h2>Book a Room</h2>
-        <form method="" action="#">
-          <div class="form-group">
-            <label for="roomnumber">Room Number:</label>
-            <input type="text" class="form-control" id="roomnumber" placeholder="Enter room number" name="roomnumber" required>
-          </div>
-          <div class="form-group">
-            <label for="customerID">customer ID:</label>
-            <input type="number" class="form-control" id="customerID" placeholder="Enter customer's ID" name="customerID" required>
-          </div>
-          <div class="form-group">
-            <label for="check-in">Check-in:</label>
-            <input type="date" class="form-control" id="check-in" placeholder="Enter customer's ID" name="check-in" required>
-          </div>
-          <div class="form-group">
-            <label for="check-out">Check-Out:</label>
-            <input type="date" class="form-control" id="check-out" placeholder="Enter customer's ID" name="check-out" required>
-          </div>
-          <button type="submit" class="btn btn-danger btn-md btn-block">Book</button>
-        </form>
+  <nav  class="navbar navbar-dark bg-dark" style="background-color: #5F9EA0 !important;">
+    <a href="#"><img src="imgs/logo.png" alt="" height="40"></a>
+    <div class="nav_links">
+        <a href="/">Home</a>
+        <a href="createroom">Create Room</a>
+        <a href="bookroom" class="active">Book Room</a>
+        <a href="listallbookings">List all Booking</a>
+        <a href="listallcustomers">List all Customers</a>
+    </div>
+  </nav>
+ <div class="form-section">
+    <h2>Book a Room</h2>
+    <div class="alert-space">
+      <% if(typeof alert != "undefined"){ %>
+          <% alert.forEach(function(error){ %>
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <%= error.msg %> 
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+          <% }) %> 
+      <% } %> 
+    </div>
+    <form action="/bookroom" method="POST">
+      <div class="form-group">
+        <label for="customerID">Customer Name:</label>
+        <input type="text" class="form-control" id="custname" name="custname">
       </div>
+      <div class="form-group">
+        <label for="roomnum">Select Room:</label>
+          <select class="form-control" name="roomnum" id="roomnum">
+            <option value="">--select room number--</option>
+            <% if(typeof rooms != "undefined"){ %>
+              <% rooms.forEach(function(room){ %>
+                <option value="<%= room.roomnum %>"><%= room.roomnum %></option>
+              <% }) %> 
+            <% } %>
+          </select>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="checkin_date">Check-in Date:</label>
+            <input type="date" class="form-control" id="checkin_date" name="checkin_date" required>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="checkin_time">Check-in Time:</label>
+            <input type="time" class="form-control" id="checkin_time" name="checkin_time" required>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="checkout_date">Check-Out Date:</label>
+            <input type="date" class="form-control" id="checkout_date" name="checkout_date" required>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="checkout_time">Check-out Time:</label>
+            <input type="time" class="form-control" id="checkout_time" name="checkout_time" required>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-danger btn-md btn-block">Book</button>
+    </form>
+  </div>
+  <% if(typeof newBooking != "undefined"){ %>
+    <div class="form-section" style="background-color: rgb(0, 0, 0);">
+        <div class="card text-center">
+            <div class="card-header" style="background-color: darkseagreen;">
+                <h3 style="font-weight: bold; font-variant: small-caps; font-family: 'Poppins',sans-serif;">Room Booking Successful</h3>
+            </div>
+            <div class="card-body">
+              <h3 class="card-text"><span style="font-weight: bold;">Booking Id:</span> <%= newBooking.id %></h3>
+              <p class="card-text">
+                <span style="font-weight: bold;">Customer Name :</span> <%= newBooking.custname %>,
+                <span style="font-weight: bold;">Room No.</span> <%= newBooking.roomnum %> 
+              </p>
+              <p class="card-text">
+                <span style="font-weight: bold;">Check-In:</span> <%= newBooking.check_in.date %> &nbsp; <%= newBooking.check_in.time %><br>
+                <span style="font-weight: bold;">Check-Out:</span> <%= newBooking.check_out.date %> &nbsp; <%= newBooking.check_out.time %>
+            </p>                  
+            </div>
+          </div>
+        </div>
+    <% } %>
     
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
