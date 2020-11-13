@@ -20,6 +20,7 @@ app.get('/',function (req,res){
 app.get('/createroom',(req,res) => {
     res.render('createroom')
 })
+
 app.post('/createroom',urlencodedParser,[
 
     check('roomnumber' ,"roomnumber must be at least 3 digits long")
@@ -71,6 +72,6 @@ app.get('/listallbookings',(req,res) => {
 })
 
 
-app.listen(3000,function (){
+app.listen(port,function (){
     console.log("listening")
 });

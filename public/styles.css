@@ -1,5 +1,6 @@
 *{
     box-sizing: border-box;
+    font-family: "Poppins",sans-serif;
 }
 
 body{
@@ -9,16 +10,17 @@ body{
 .nav_links a{
     text-decoration: none;
     color: black;
+    border: 1px solid transparent;
+    padding: 5px 20px;
+    font-variant: small-caps;
     font-size: medium;
-    padding: 10px;
-    font-weight: 600;
+    transition: 0.7s ease;
 }
 
 .nav_links a:hover , .active{
     background-color: rgb(10, 10, 10);
     color: rgb(255, 255, 255) !important;
-    border-radius: 10px !important;
-    
+    border-radius: 5px !important;
 }
 
 
@@ -52,14 +54,17 @@ body{
     max-width: 80%;
     margin: 3% 10%;
     padding: 25px;
-    font-weight: 600;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
     border-radius: 10px;
 }
 
+
 .form-section h2{
     text-align: center;
+    font-variant: small-caps;
+    font-size: 2.5rem;
 }
+
 
 input[type=number] {
     -moz-appearance: textfield;
