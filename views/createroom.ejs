@@ -61,6 +61,10 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="maintenancereport">Maintenance Report:</label>
+                <textarea class="form-control" name="maintenancereport" rows="2"></textarea>
+            </div>
+            <div class="form-group">
                 <label for="fare">Fare (per 24hrs):</label>
                 <input type="number" class="form-control" id="fare" placeholder="Enter fare" name="fare">
             </div>
@@ -80,7 +84,7 @@
                         <span style="font-weight: bold;">Room Id:</span> <%= newRoom.id %>
                     </p>
                   <h4 class="card-text"><span style="font-weight: bold;">Aminities:</span> <%= newRoom.aminities %> </h4>
-                  <div class="badge badge-pill badge-success" style="padding: 5px; margin: 10px;"><h5><%= newRoom.fare %></h5></div>
+                  <div class="badge badge-pill badge-success"><h5>Fare: Rs.<%= newRoom.fare %>  /- + tax</h5></div>
                 </div>
             </div>
         </div>

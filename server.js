@@ -4,7 +4,7 @@ const app = express();
 const port =process.env.PORT || 3000 
 // app.use(express.json());
 const { check, validationResult } = require('express-validator');
-
+app.use
 app.use(express.static('public'));
 
 const urlencodedParser = bodyParser.urlencoded({ extended: false})
@@ -40,15 +40,17 @@ app.get('/createroom',(req,res) => {
 app.post('/createroom',urlencodedParser,[
 
     check('roomnumber' ,"roomnumber must be at least 3 digits long")
-    .exists()
+    .notEmpty()
     .isLength({ min: 3 }),
     check('roomname' ,"roomname must be at least 5 chars long")
-    .exists()
+    .notEmpty()
     .isLength({ min: 5 }),
     check('aminities' ,"atleast one aminity must be selected")
-    .exists(),
-    check('fare' ,"Fare must be a number")
-    .exists()
+    .notEmpty(),
+    check('fare' ,"Fare is required")
+    .notEmpty(),
+    // check('maintenancereport.value' ,"maintenancereport is required")
+    // .notEmpty()
     ],(req, res) => {
     // Finds the validation errors in this request and wraps them in an object with handy functions
     const errors = validationResult(req);
@@ -65,10 +67,11 @@ app.post('/createroom',urlencodedParser,[
             roomnum : req.body.roomnumber,
             name : req.body.roomname,
             aminities : req.body.aminities,
-            fare : "Rupees "+req.body.fare+"/- Only"
+            fare : req.body.fare,
+            maintenancereport: req.body.maintenancereport
         };
         rooms.push(newRoom);
-        // console.log(rooms)
+        console.log(rooms)
         res.render('createroom',{
             newRoom
         })
