@@ -1,6 +1,6 @@
 body{   
     background: url(imgs/backgroundimg.jpg);
-    font-family: 'Oswald';
+    font-family: 'Oswald','Times New Roman', Times, serif;
     -webkit-background-size: cover;
     background-size: cover;
     height: 100vh;
