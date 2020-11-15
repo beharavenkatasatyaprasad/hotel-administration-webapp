@@ -3,105 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <title>Hotel Tonight Admin page</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="style.css">
+    <script src="https://use.fontawesome.com/d8a40b24d8.js"></script>
+    <title>Book Room</title>
 </head>
 <body>
-  <nav  class="navbar navbar-dark bg-dark" style="background-color: #5F9EA0 !important;">
-    <a href="#"><img src="imgs/logo.png" alt="" height="40"></a>
-    <div class="nav_links">
-        <a href="/">Home</a>
-        <a href="createroom">Create Room</a>
-        <a href="bookroom" class="active">Book Room</a>
-        <a href="listallbookings">List all Booking</a>
-        <a href="listallcustomers">List all Customers</a>
-    </div>
-  </nav>
- <div class="form-section">
-    <h2>Book a Room</h2>
-    <div class="alert-space">
-      <% if(typeof alert != "undefined"){ %>
-          <% alert.forEach(function(error){ %>
-              <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                  <%= error.msg %> 
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                  </button>
+    <nav class="navbar navbar-expand-md">
+        <a class="navbar-brand" href=""><img src="imgs/logo.png" alt="" height="40"></a>
+        <button class="navbar-toggler" id="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+            <ul class="navbar-nav  text-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="dashboard">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="createroom">Create Room</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active1" href="bookroom">Book Room</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Log out</a>
+                </li>
+            </ul>
+        </div>  
+    </nav>
+    <div class="container">
+      <div class="login-container col-lg-10 col-md-12 col-sm-12 col-xs-12" style="margin-top: 5% !important;"> 
+        <div class="login-content">
+          <div class="login-header text-center">
+            <h2>Book A Room</h2>
+        </div>
+          <div class="login-body">
+              <form action="/bookroom" method="POST">
+                  <div class="form-group">
+                      <div class="pos-r">                                        
+                          <input   id="form-roomnum" type="number" name="roomnum" placeholder="Room Number..." class="form-roomnum form-control">
+                          <i class="fa fa-list-ol"></i>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <div class="pos-r">                                    
+                          <input id="form-customername" type="text" name="customername" placeholder="CustomerName..." class="form-customername form-control" >
+                          <i class="fa fa-star"></i>                                       
+                      </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <label for="checkin_date">Checkin Date:</label>                       
+                      <div class="form-group">
+                          <div class="pos-r">
+                              <input id="form-checkin_date" type="date" name="checkin_date" class="form-checkin_date form-control" >
+                              <i class="fa fa-calendar-check-o"></i>                       
+                          </div>
+                      </div>  
+                    </div>
+                    <div class="col">
+                      <label for="checkin_time">Checkin Time:</label>
+                      <div class="form-group">
+                          <div class="pos-r">                                    
+                              <input id="form-checkin_time" type="time" name="checkin_time" class="form-checkin_time form-control" >
+                              <i class="fa fa-clock-o"></i>                        
+                          </div>
+                      </div>  
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <label for="checkout_date">Checkout Date:</label>
+                      <div class="form-group">
+                          <div class="pos-r">                                    
+                              <input id="form-checkout_date" type="date" name="checkout_date" class="form-checkout_date form-control" >
+                              <i class="fa fa-calendar-minus-o"></i>                     
+                          </div>
+                      </div>  
+                    </div>
+                    <div class="col">
+                      <label for="checkout_time">Checkout Time:</label>
+                      <div class="form-group">
+                          <div class="pos-r">                                    
+                              <input id="form-checkout_time" type="time" name="checkout_time" class="form-checkout_time form-control" >
+                              <i class="fa fa-clock-o"></i>                        
+                          </div>
+                      </div>  
+                    </div>
+                  </div>
+                  <div class="form-group">     
+                      <button type="submit" style=" letter-spacing: 3px;" class="btn btn-primary form-control">Create</button>  
+                  </div>
+              </form>
+            </div>   
+          </div>
+          <div class="alert-space">
+            <% if(typeof err != "undefined"){ %>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <small><i class="fa fa-info-circle"></i><%= err %> </small>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-          <% }) %> 
-      <% } %> 
+            <% } %> 
+            <% if(typeof successMsg != "undefined"){ %>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <small><i class="fa fa-check-circle"></i></i> <%= successMsg %></small>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <% } %>   
+        </div>
+      </div>
     </div>
-    <form action="/bookroom" method="POST">
-      <div class="form-group">
-        <label for="customerID">Customer Name:</label>
-        <input type="text" class="form-control" id="custname" name="custname">
-      </div>
-      <div class="form-group">
-        <label for="roomnum">Select Room:</label>
-          <select class="form-control" name="roomnum" id="roomnum">
-            <option value="">--select room number--</option>
-            <% if(typeof rooms != "undefined"){ %>
-              <% rooms.forEach(function(room){ %>
-                <option value="<%= room.roomnum %>"><%= room.roomnum %></option>
-              <% }) %> 
-            <% } %>
-          </select>
-      </div>
-      <div class="row">
-        <div class="col">
-          <div class="form-group">
-            <label for="checkin_date">Check-in Date:</label>
-            <input type="date" class="form-control" id="checkin_date" name="checkin_date" required>
-          </div>
-        </div>
-        <div class="col">
-          <div class="form-group">
-            <label for="checkin_time">Check-in Time:</label>
-            <input type="time" class="form-control" id="checkin_time" name="checkin_time" required>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <div class="form-group">
-            <label for="checkout_date">Check-Out Date:</label>
-            <input type="date" class="form-control" id="checkout_date" name="checkout_date" required>
-          </div>
-        </div>
-        <div class="col">
-          <div class="form-group">
-            <label for="checkout_time">Check-out Time:</label>
-            <input type="time" class="form-control" id="checkout_time" name="checkout_time" required>
-          </div>
-        </div>
-      </div>
-      <button type="submit" class="btn btn-danger btn-md btn-block">Book</button>
-    </form>
-  </div>
-  <% if(typeof newBooking != "undefined"){ %>
-    <div class="form-section" style="background-color: rgb(0, 0, 0);">
-        <div class="card text-center">
-            <div class="card-header" style="background-color: darkseagreen;">
-                <h3 style="font-weight: bold; font-variant: small-caps; font-family: 'Poppins',sans-serif;">Room Booking Successful</h3>
-            </div>
-            <div class="card-body">
-              <h3 class="card-text"><span style="font-weight: bold;">Booking Id:</span> <%= newBooking.id %></h3>
-              <p class="card-text">
-                <span style="font-weight: bold;">Customer Name :</span> <%= newBooking.custname %>,
-                <span style="font-weight: bold;">Room No.</span> <%= newBooking.roomnum %> 
-              </p>
-              <p class="card-text">
-                <span style="font-weight: bold;">Check-In:</span> <%= newBooking.check_in.date %> &nbsp; <%= newBooking.check_in.time %><br>
-                <span style="font-weight: bold;">Check-Out:</span> <%= newBooking.check_out.date %> &nbsp; <%= newBooking.check_out.time %>
-            </p>                  
-            </div>
-          </div>
-        </div>
-    <% } %>
-    
-
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

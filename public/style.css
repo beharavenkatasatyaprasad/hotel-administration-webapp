@@ -7,7 +7,7 @@ body{
 }
 
 .navbar{
-    background-color: rgb(0, 128, 128, 0.6);
+    background-color: rgb(0, 128, 128, 0.8);
     margin-bottom: 10px;
     z-index: 999;
 }
@@ -43,10 +43,8 @@ body{
 }
 
 .login-container{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);   
+    margin: auto;
+    margin-top: 2% !important;
 }
 .login-container .login-content{
     background: rgba(0, 0, 0, 0.8) !important;
@@ -59,7 +57,10 @@ body{
 }
 
 .login-container  .login-header{
-    padding: 10px 30px;
+    padding: 10px 30px; 
+    letter-spacing: 2.5px; 
+    font-family: 'Oswald'; 
+    font-variant: small-caps;
 }
 .login-container, .login-container a,.login-container input{
     color: #ffffff;
@@ -69,7 +70,7 @@ body{
    color: #4bccff;
 }
 .login-container .login-body{
-    padding: 30px 30px;
+    padding: 5px 15px;
 }
 .login-container .login-body input.form-control{
     background: rgba(0, 0, 0, 0.8);
@@ -111,7 +112,7 @@ body{
 }
 
 .alert-danger{
-    background-color: hsl(355, 70%, 91%, 0.8) !important;
+    background-color: hsl(355, 70%, 91%, 0.9) !important;
     font-family: sans-serif;
     letter-spacing: 1px;
     border: 1px solid transparent;
@@ -119,18 +120,44 @@ body{
     text-align: start;
 }
 
+.alert-space{
+    margin: 2%;
+}
 .alert-success{
-    background-color: hsl(210, 17%, 98%, 0.8) !important;
+    background-color: hsl(210, 17%, 98%, 0.9) !important;
     font-family: sans-serif;
     letter-spacing: 1px;
     border: 1px solid transparent;
     font-size: 15px;
     text-align: start;
 }
-
-
-
 
 input[type=number] {
     -moz-appearance: textfield;
-} 
+}
+
+
+.dashboard-container{
+    color: white;
+    margin: 5%;
+    border-radius: 10px;
+}
+
+
+
+.data{
+    font-size: 100px;
+    font-family: "Kaushan Script"
+}
+
+.data-container{
+    background-color: rgba(0, 0, 0, 0.8);
+    margin: 5%;
+}
+.data-description{
+    font-family: "Oswald";
+    font-variant: small-caps;
+    letter-spacing: 1px;
+    font-size: x-large;
+    background-color:  rgb(0, 128, 128, 0.8);
+}

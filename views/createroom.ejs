@@ -28,15 +28,15 @@
                     <a class="nav-link" href="bookroom">Book Room</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="logout">Log out</a>
+                    <a class="nav-link" href="/logout">Log out</a>
                 </li>
             </ul>
         </div>  
     </nav>
     <div class="container">
-        <div class="login-container col-lg-8 col-md-6 col-sm-8 col-xs-12"> 
+        <div class="login-container col-lg-10 col-md-12 col-sm-12 col-xs-12" style="margin-top: 8% !important;"> 
             <div class="login-content">
-                <div class="login-header text-center" style="letter-spacing: 2.5px; font-family: 'Oswald';">
+                <div class="login-header text-center">
                     <h2>Create Room</h2>
                 </div>
                 <div class="login-body">
@@ -81,25 +81,25 @@
                             <button type="submit" style=" letter-spacing: 3px;" class="btn btn-primary form-control">Create</button>  
                         </div>
                     </form>
-                    <% if(typeof newRoom != "undefined"){ %>
-                        <div class="form-section" style="background-color: rgb(0, 0, 0);">
-                            <div class="card text-center">
-                                <div class="card-header" style="background-color: darkseagreen;">
-                                    <h3 style="font-weight: bold; font-variant: small-caps; font-family: 'Poppins',sans-serif;">Successfully Created New Room</h3>
-                                </div>
-                                <div class="card-body">
-                                  <h3 class="card-text"><span style="font-weight: bold;">Room name:</span> <%= newRoom.name %> </h3>
-                                    <p class="card-text">
-                                        <span style="font-weight: bold;">Room No. :</span> <%= newRoom.roomnum %>,
-                                        <span style="font-weight: bold;">Room Id:</span> <%= newRoom.id %>
-                                    </p>
-                                  <h4 class="card-text"><span style="font-weight: bold;">Aminities:</span> <%= newRoom.aminities %> </h4>
-                                  <div class="badge badge-pill badge-success"><h5>Fare: Rs.<%= newRoom.fare %>  /- + tax</h5></div>
-                                </div>
-                            </div>
-                        </div>
-                    <% } %>
                 </div>
+            </div>        
+            <div class="alert-space">
+                <% if(typeof err != "undefined"){ %>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <small><i class="fa fa-info-circle"></i><%= err %> </small>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %> 
+                <% if(typeof successMsg != "undefined"){ %>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <small><i class="fa fa-check-circle"></i></i> <%= successMsg %></small>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>   
             </div>
         </div>
     </div>

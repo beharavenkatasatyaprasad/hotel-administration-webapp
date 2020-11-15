@@ -12,7 +12,6 @@ app.use(express.urlencoded({ extended: false}))
 const users = []
 const rooms = []
 const customer_bookings=[];
-    
 app.set('view engine','ejs');
     
 app.get('/',function (req,res){
@@ -23,42 +22,23 @@ app.get('/login',(req,res) =>{
     res.render('login');
 })
    
-app.post('/login',urlencodedParser,[
-
-    check('username' ,"Username Required")
-    .notEmpty(),
-    
-    check('password' ,"Password Required")
-    .notEmpty(),
-    
-    
-    ],async (req, res) => {
-    
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        
-    const alert = errors.array()
-    res.render('login',{
-        alert
-     })
-    }
-    else{
-        try {
-            const hashedPassword = await bcrypt.hash(req.body.password, 10)
-            const userlogin = {
-                username : req.body.username,
-                password : hashedPassword
-            };
-            users.push(userlogin)
-            const successMsg = 'Login Successfull'
-            res.render('login',{
-                successMsg
-            })
-          } catch {
-            res.status(500).send()
-          }
-        }
-
+app.post('/login',(req,res) => {
+    var { username, password } = req.body;
+    var err;
+    if (!username || !password ) {
+        err = "Please Fill All The Fields...";
+        res.render('login', { 'err': err });
+    }else{const loginreq = {
+            id : rooms.length +1,
+            username : req.body.username,
+            password : req.body.password
+        };
+        console.log(loginreq)
+        const successMsg = 'New Room Added Successfully'
+        res.render('createroom',{
+            successMsg
+        })
+}
 })
 
 app.get('/register',(req,res) =>{
@@ -91,7 +71,6 @@ app.post('/register',urlencodedParser,[
         };
         users.push(newuser);
         const successMsg = 'Registration Successfull'
-        // console.log(newuser)
         res.render('register',{
             successMsg
         })
@@ -104,43 +83,25 @@ app.get('/createroom',(req,res) => {
     res.render('createroom')
 })
 
-app.post('/createroom',urlencodedParser,[
-
-    check('roomnumber' ,"roomnumber must be at least 3 digits long")
-    .notEmpty()
-    .isLength({ min: 3 }),
-    check('roomname' ,"roomname must be at least 5 chars long")
-    .notEmpty()
-    .isLength({ min: 5 }),
-    check('aminities' ,"atleast one aminity must be selected")
-    .notEmpty(),
-    check('fare' ,"Fare is required")
-    .notEmpty(),
-    check('maintenancereport' ,"maintenancereport is required")
-    .notEmpty()
-    ],(req, res) => {
-    // Finds the validation errors in this request and wraps them in an object with handy functions
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-    //   return res.status(400).json({ errors: errors.array() });
-    const alert = errors.array()
-    res.render('createroom',{
-        alert
-    })
-    }
-    else{
-        const newRoom = {
+app.post('/createroom',(req, res) => {
+    
+    var { roomnum, roomname, aminities, fare } = req.body;
+    var err;
+    if (!roomnum || !roomname || !aminities || !fare) {
+        err = "Please Fill All The Fields...";
+        res.render('createroom', { 'err': err });
+    }else{const newRoom = {
             id : rooms.length +1,
-            roomnum : req.body.roomnumber,
+            roomnum : req.body.roomnum,
             name : req.body.roomname,
             aminities : req.body.aminities,
             fare : req.body.fare,
-            maintenancereport: req.body.maintenancereport
         };
         rooms.push(newRoom);
+        const successMsg = 'New Room Added Successfully'
         console.log(rooms)
         res.render('createroom',{
-            newRoom
+            successMsg
         })
     }
     
@@ -153,55 +114,37 @@ app.get('/bookroom',(req,res) => {
     })
 })
 
-app.post('/bookroom',urlencodedParser,[
+app.post('/bookroom',(req,res) =>{
 
-    check('roomnum' ,"please select room number")
-    .notEmpty(),
-    check('custname' ,"Please enter customer name")
-    .notEmpty()
-],(req, res) => {
-    // Finds the validation errors in this request and wraps them in an object with handy functions
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        //   return res.status(400).json({ errors: errors.array() });
-        const alert = errors.array()
-        res.render('bookroom',{
-            alert
-        })
-    }
-    else{
+    var { roomnum, customername, checkin_date, checkin_time, checkout_date, checkout_time} = req.body;
+    var err;
+    if (!roomnum || !customername || !checkin_date || !checkin_time || !checkout_date || !checkout_time) {
+        err = "Please Fill All The Fields...";
+        res.render('bookroom', { 'err': err });
+    }else{
         const newBooking = {
             id : customer_bookings.length +1,
             roomnum : req.body.roomnum,
-            custname : req.body.custname,
-            check_in : {
-                time : req.body.checkin_time,
-                date : req.body.checkin_date,
-            },
-            check_out : {
-                time : req.body.checkout_time,
-                date : req.body.checkout_date,
-            }
+            name : req.body.roomname,
+            aminities : req.body.aminities,
+            fare : req.body.fare,
         };
         customer_bookings.push(newBooking);
-        // console.log(customer_bookings)
+        const successMsg = 'Booking Successful'
         res.render('bookroom',{
-            newBooking          
-        })      
+            successMsg
+        })
     }
     
 })
 
-app.get('/listallrooms',(req,res) => {
-    res.render('listallrooms',{
-        rooms
-    })
+app.get('/dashboard',(req,res)=>{
+    res.render('dashboard');
 })
 
-app.get('/listallbookings',(req,res) => {
-    res.render('listallbookings')
+app.get('/logout',(req,res)=>{
+    res.redirect('login');
 })
-
 
 app.listen(port,function (){
     console.log("listening")

@@ -28,7 +28,7 @@
         </div>  
     </nav>
     <div class="container">
-        <div class="login-container col-lg-4 col-md-6 col-sm-8 col-xs-12">
+        <div class="login-container col-lg-6 col-md-8 col-sm-8 col-xs-12" style="margin-top: 10% !important;">
           <div class="login-title text-center bg-secondary">
                 <a href=""><img src="imgs/logo.png" alt="" height="40"></a>
           </div>
@@ -54,28 +54,25 @@
                         </div>                                       
                     </form>
                 </div> <!-- end  login-body -->                     
-                <div class="alert-space">
-                    <% if(typeof alert != "undefined"){ %>
-                        <% alert.forEach(function(error){ %>
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <small><i class="fa fa-info-circle"></i><%= error.msg %> </small>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                              </div>
-                        <% }) %> 
-                    <% } %> 
-                    <% if(typeof successMsg != "undefined"){ %>
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <small><i class="fa fa-check-circle"></i></i> <%= successMsg %></small>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                        </div>
-                    <% } %> 
-                </div>
             </div> 
+        </div>
+        <div class="alert-space">
+            <% if(typeof err != "undefined"){ %>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <small><i class="fa fa-info-circle"></i><%= err %> </small>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <% } %> 
+            <% if(typeof successMsg != "undefined"){ %>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <small><i class="fa fa-check-circle"></i></i> <%= successMsg %></small>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <% } %>   
         </div>
     </div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
