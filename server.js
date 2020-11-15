@@ -2,25 +2,20 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const bcrypt = require('bcrypt')
-const passport = require('passport')
-const flash = require('express-flash')
-const session = require('express-session')
-// const methodOverride = require('method-override')
 const urlencodedParser = bodyParser.urlencoded({ extended: false})
 const { check, validationResult } = require('express-validator');
-app.use(express.urlencoded({ extended: false}))
-const initializePassport = require('./passport-config')
 const port =process.env.PORT || 3000 
 
-const users = []
 app.use(express.static('public'));
+app.use(express.urlencoded({ extended: false}))
+
+const users = []
 const rooms = []
 const customer_bookings=[];
     
 app.set('view engine','ejs');
     
 app.get('/',function (req,res){
-        // res.render('index');
     res.redirect('/login')
 })
     
@@ -37,7 +32,7 @@ app.post('/login',urlencodedParser,[
     .notEmpty(),
     
     
-    ],(req, res) => {
+    ],async (req, res) => {
     
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -48,17 +43,22 @@ app.post('/login',urlencodedParser,[
      })
     }
     else{
-        const userlogin = {
-            username : req.body.username,
-            password : req.body.password
-        };
-        // console.log(userlogin)
-        const successMsg = 'Login Successfull'
-        res.render('login',{
-            successMsg
-        })
-    }
-    
+        try {
+            const hashedPassword = await bcrypt.hash(req.body.password, 10)
+            const userlogin = {
+                username : req.body.username,
+                password : hashedPassword
+            };
+            users.push(userlogin)
+            const successMsg = 'Login Successfull'
+            res.render('login',{
+                successMsg
+            })
+          } catch {
+            res.status(500).send()
+          }
+        }
+
 })
 
 app.get('/register',(req,res) =>{
@@ -187,10 +187,11 @@ app.post('/bookroom',urlencodedParser,[
         // console.log(customer_bookings)
         res.render('bookroom',{
             newBooking          
-        })
+        })      
     }
     
 })
+
 app.get('/listallrooms',(req,res) => {
     res.render('listallrooms',{
         rooms

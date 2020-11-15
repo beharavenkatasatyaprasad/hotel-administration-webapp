@@ -40,13 +40,13 @@
                         <form action="register" method="POST">
                             <div class="form-group">
                                 <div class="pos-r">                                        
-                                    <input   id="form-username" type="text" name="username" placeholder="Username..." class="form-username form-control">
+                                    <input   id="form-username" type="text" name="username" placeholder="Username..." class="form-username form-control" autocomplete="off">
                                     <i class="fa fa-user"></i>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="pos-r">                                    
-                                    <input id="form-password" type="password" name="password" placeholder="Password..." class="form-password form-control" >
+                                    <input id="form-password" type="password" name="password" placeholder="Password..." class="form-password form-control" autocomplete="off">
                                     <i class="fa fa-lock"></i>                                        
                                 </div>
                             </div>
@@ -56,19 +56,17 @@
                         </form>
                     </div> <!-- end  login-body -->                     
                     <div class="alert-space">
-                        <% if(typeof alert != "undefined"){ %>
-                            <% alert.forEach(function(error){ %>
+                        <% if(typeof err != "undefined"){ %>
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    <small><i class="fa fa-info-circle"></i><%= error.msg %> </small>
+                                    <small><i class="fa fa-info-circle"></i> <%= err %> </small>
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                            <% }) %> 
                         <% } %>
-                        <% if(typeof successMsg != "undefined"){ %>
+                        <% if(typeof successmsg != "undefined"){ %>
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <small><i class="fa fa-check-circle"></i></i> <%= successMsg %></small>
+                                <small><i class="fa fa-check-circle"></i></i> <%= successmsg %></small>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
